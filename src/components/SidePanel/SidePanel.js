@@ -13,8 +13,6 @@ class SidePanel extends React.Component {
       currentUser,
       primaryColor,
       isPrivateIssue,
-      openIssueEdit,
-      openProjectEdit,
     } = this.props;
 
     return (
@@ -38,8 +36,6 @@ class SidePanel extends React.Component {
         <Issues
           currentUser={currentUser}
           isPrivateIssue={isPrivateIssue}
-          openIssueEdit={openIssueEdit}
-          openProjectEdit={openProjectEdit}
         />
 
         <Projects currentUser={currentUser} />

@@ -108,7 +108,10 @@ class Messages extends React.Component {
     this.addMessageListener(issueId);
     this.state.issuesRef.on("child_changed", (snap) => {
       var editedIssue = snap.val();
-      this.setState({ issue: editedIssue });
+      if(editedIssue.id === this.state.issue.id){
+        this.setState({ issue: editedIssue });
+      }
+      
     });
   };
 

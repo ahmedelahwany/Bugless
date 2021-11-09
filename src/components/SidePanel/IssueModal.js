@@ -4,7 +4,7 @@ import firebase from "../../firebase";
 
 
 // prettier-ignore
-import { Menu, Icon, Modal, Form, Input, Button, Label, Select} from "semantic-ui-react";
+import {  Icon, Modal, Form, Input, Button,  Select} from "semantic-ui-react";
 
 export class IssueModal extends Component {
   state = {
