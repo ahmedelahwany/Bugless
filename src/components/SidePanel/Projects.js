@@ -50,7 +50,7 @@ class Projects extends React.Component {
       this.state.projectsRef.on("child_added", (snap) => {
         if (
           userRole === "Admin" &&
-          snap.val().createdBy.uid === this.state.user.uid
+          snap.val().createdBy.id === this.state.user.uid
         ) {
           loadedProjects.push(snap.val());
         }

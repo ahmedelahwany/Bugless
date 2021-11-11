@@ -56,7 +56,7 @@ class Issues extends React.Component {
     this.state.issuesRef.on("child_added", (snap) => {
       if (
         userRole === "Admin" &&
-        snap.val().createdBy.uid === this.state.user.uid
+        snap.val().createdBy.id === this.state.user.uid
       ) {
         loadedIssues.push(snap.val());
       }
@@ -384,6 +384,7 @@ class Issues extends React.Component {
           developer={developer}
           priority={priority}
           status={status}
+          currentUser={this.state.user}
         />
       </React.Fragment>
     );

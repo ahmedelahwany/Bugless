@@ -209,6 +209,18 @@ export default class ChangeLog extends Component {
             content="Clear all filters"
             icon="delete"
           />
+           <Button
+            style={{
+              marginBottom: 20,
+              marginTop : 0,
+            }}
+            labelPosition="left"
+            secondary
+            fluid
+            
+            content="Generate Report"
+            icon="search"
+          />
           <BootstrapTable
             bootstrap4
             striped

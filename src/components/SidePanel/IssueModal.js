@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import firebase from "../../firebase";
 
-
 // prettier-ignore
 import {  Icon, Modal, Form, Input, Button,  Select} from "semantic-ui-react";
 
@@ -48,19 +47,22 @@ export class IssueModal extends Component {
   };
 
   projectOptions = () => {
-    let projects = [];
+    if (this.state.user) {
+      let projects = [];
 
-    this.state.projectsRef.once("value", (snapshot) => {
-      snapshot.forEach((data) => {
-        projects.push({
-          key: data.key,
-          text: data.val().name,
-          value: data.key,
+      this.state.projectsRef.once("value", (snapshot) => {
+        snapshot.forEach((data) => {
+          if (data.val().createdBy.id === this.state.user.uid)
+            projects.push({
+              key: data.key,
+              text: data.val().name,
+              value: data.key,
+            });
         });
       });
-    });
 
-    return projects;
+      return projects;
+    }
   };
   developerOptions = () => {
     let Users = [];
@@ -112,22 +114,21 @@ export class IssueModal extends Component {
   handleChangeDropDownPriority = (e, { value }) =>
     this.setState({ priority: value });
 
-    
   render() {
     const {
-        issueName,
-        issueDetails,
-        statusOptions,
-        typeOptions,
-        priorityOptions,
-        status,
-        Itype,
-        priority,
-        project,
-        developerKey
-      } = this.state;
+      issueName,
+      issueDetails,
+      statusOptions,
+      typeOptions,
+      priorityOptions,
+      status,
+      Itype,
+      priority,
+      project,
+      developerKey,
+    } = this.state;
 
-      const {modal , type  } = this.props;
+    const { modal, type } = this.props;
     return (
       <React.Fragment>
         <Modal
@@ -181,7 +182,7 @@ export class IssueModal extends Component {
                 }}
                 placeholder="Assigned Developer"
                 search
-                value = {developerKey}
+                value={developerKey}
                 onChange={this.handleChangeDropDownDeveloper}
                 searchInput={{ id: "form-select-control-developer" }}
               />
@@ -232,12 +233,20 @@ export class IssueModal extends Component {
 
           <Modal.Actions>
             {type === 2 && (
-              <Button color="green" inverted onClick={(event) => this.props.handleSubmit(event ,this.state)}>
+              <Button
+                color="green"
+                inverted
+                onClick={(event) => this.props.handleSubmit(event, this.state)}
+              >
                 <Icon name="checkmark" /> Add
               </Button>
             )}
             {type === 3 && (
-              <Button color="green" inverted onClick={(event) => this.props.handleSubmit(event ,this.state)}>
+              <Button
+                color="green"
+                inverted
+                onClick={(event) => this.props.handleSubmit(event, this.state)}
+              >
                 <Icon name="checkmark" /> Edit
               </Button>
             )}
