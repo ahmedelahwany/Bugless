@@ -563,6 +563,7 @@ class Messages extends React.Component {
           projectName = {projectName}
           priority = {priority}
           status = {status}
+          currentUser={this.state.user}
         />):
 
        (<ProjectModal
