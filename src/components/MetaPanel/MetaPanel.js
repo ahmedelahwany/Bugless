@@ -22,7 +22,6 @@ class MetaPanel extends React.Component {
   };
 
   componentDidMount() {
-    console.log("joj");
     this.addListeners();
   }
 
@@ -82,14 +81,13 @@ class MetaPanel extends React.Component {
       .slice(0, 2);
 
   displayAssignedPersonnel = (personnel) => {
-    console.log(personnel);
     return personnel.map((i) => {
       let listItem;
       this.state.usersRef.child(`${i}`).once("value", (snap) => {
-        console.log(snap.val());
         listItem = (
           <Menu.Item
             style={{ marginBottom: "6px" }}
+            key = {snap.key}
           >
             <Header  as="h5">
               <Image circular src={snap.val().avatar} />

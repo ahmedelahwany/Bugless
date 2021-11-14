@@ -23,7 +23,6 @@ class ProjectIssues extends Component {
   state = {
     ProjectIssues: [],
     project: this.props.currentProject,
-    listeners: [],
     issuesRef: this.props.issuesRef,
 
     nameFilter: () => {},
@@ -204,15 +203,18 @@ class ProjectIssues extends Component {
         dataField: "id",
         text: "View",
         formatter: function Formatter(cell) {
-          return <a href = {"#"} onClick={() => changeIssueInner(cell)}>View</a>;
+          return (
+            <a href={"#"} onClick={() => changeIssueInner(cell)}>
+              View
+            </a>
+          );
         },
         align: "center",
-        headerStyle: { width: '32px' , fontSize: "12px",},
+        headerStyle: { width: "32px", fontSize: "12px" },
         headerAlign: "center",
         style: {
           fontSize: "12px",
           color: "blue",
-          
         },
       },
     ];
@@ -223,11 +225,11 @@ class ProjectIssues extends Component {
   }
 
   componentWillUnmount() {
-    this.removeListeners(this.state.listeners);
+    this.removeListeners();
   }
 
   removeListeners = () => {
-    this.state.issuesRef.off();
+    //this.state.issuesRef.off();
   };
 
   addListeners = () => {
@@ -235,9 +237,8 @@ class ProjectIssues extends Component {
     this.state.issuesRef.on("child_added", (snap) => {
       if (snap.val().project === this.state.project.id) {
         ProjectIssues.push(snap.val());
+        this.setState({ ProjectIssues });
       }
-      
-      this.setState({ ProjectIssues });
     });
     this.state.issuesRef.on("child_changed", (snap) => {
       var index = ProjectIssues.findIndex(

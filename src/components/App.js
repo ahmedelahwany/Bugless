@@ -48,7 +48,6 @@ const App = ({
         isSectionType = {isSectionType}
         currentProject = {currentProject}
         isPrivateIssue={isPrivateIssue}
-        isSectionType={isSectionType}
         key={(currentIssue && currentIssue.id) || ( currentProject && currentProject.id)}
         currentIssue={currentIssue}
         userPosts={userPosts}

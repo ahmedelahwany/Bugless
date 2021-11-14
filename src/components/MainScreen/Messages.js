@@ -610,9 +610,7 @@ class Messages extends React.Component {
         )}
         {activeItem === "Dashboard" && (
           <ProjectDashboard
-            currentProject={currentproject}
-            currentUser={user}
-            issuesRef={issuesRef}
+            projectID ={currentproject.id}
           />
         )}
 
